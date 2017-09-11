@@ -4,17 +4,17 @@ project (GLFWTutorial)
 set (GLFWTutorial_VERSION_MAJOR 1)
 set (GLFWTutorial_VERSION_MINOR 0)
 
-# Set GLFW tests, examples and documentation.
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-
 # Configure a header file to pass some of the CMake settings
 # to the source code.
 configure_file (
 	"${PROJECT_SOURCE_DIR}/GLFWTutorialConfig.h.in" 
 	"${PROJECT_BINARY_DIR}/GLFWTutorialConfig.h"
 )
+
+set(GLFW_ROOT CACHE PATH "${GLFW_ROOT}")
+
+file(MAKE_DIRECTORY "GLFW")
+file(COPY "${GLFW_ROOT}" DESTINATION "${PROJECT_SOURCE_DIR}")
 
 # Add the binary tree to the search path for include files
 # so that we will find GLFWTutorialConfig.h.
